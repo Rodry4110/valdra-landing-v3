@@ -1,0 +1,1 @@
+{"version":"0.0.1","configurations":[{"name":"valdra-landing","runtimeExecutable":"npx","runtimeArgs":["vite","--port","5200"],"port":5200}]}
