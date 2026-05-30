@@ -73,7 +73,7 @@ export function ContactSection() {
                 Ready to<br />
                 <span style={{ color: '#0ea5e9' }}>Stand Out?</span>
               </h2>
-              <p className="text-slate-300 leading-relaxed max-w-md mb-10">
+              <p className="text-slate-200 leading-relaxed max-w-md mb-10">
                 Tell us about your project. We'll get back to you within 24 hours with a clear plan and honest pricing.
               </p>
 
@@ -93,7 +93,7 @@ export function ContactSection() {
                       <Icon size={15} style={{ color: accent }} />
                     </div>
                     <div>
-                      <div className="text-slate-300 text-xs tracking-widest uppercase">{label}</div>
+                      <div className="text-slate-200 text-xs tracking-widest uppercase">{label}</div>
                       <div className="text-white text-sm font-medium mt-0.5">{value}</div>
                     </div>
                   </div>
@@ -212,7 +212,7 @@ export function ContactSection() {
                     <select
                       value={fields.business}
                       onChange={update('business')}
-                      className="rounded-xl px-4 py-3 text-slate-300 text-sm outline-none appearance-none cursor-pointer focus:border-[#0ea5e9]/50"
+                      className="rounded-xl px-4 py-3 text-slate-200 text-sm outline-none appearance-none cursor-pointer focus:border-[#0ea5e9]/50"
                       style={{
                         background: 'rgba(255,255,255,0.04)',
                         border: '1px solid rgba(255,255,255,0.08)',
@@ -234,7 +234,7 @@ export function ContactSection() {
                     <select
                       value={fields.interest}
                       onChange={update('interest')}
-                      className="rounded-xl px-4 py-3 text-slate-300 text-sm outline-none appearance-none cursor-pointer focus:border-[#0ea5e9]/50"
+                      className="rounded-xl px-4 py-3 text-slate-200 text-sm outline-none appearance-none cursor-pointer focus:border-[#0ea5e9]/50"
                       style={{
                         background: 'rgba(255,255,255,0.04)',
                         border: '1px solid rgba(255,255,255,0.08)',
@@ -323,12 +323,12 @@ export function ContactSection() {
           >
             VALDRA<span className="text-[#0ea5e9]/70"> · </span>CO
           </span>
-          <p className="text-slate-300 text-xs tracking-widest">
+          <p className="text-slate-200 text-xs tracking-widest">
             © 2026 Valdra Co. All rights reserved. — Western NC
           </p>
-          <div className="flex gap-6 text-xs text-slate-300 tracking-widest uppercase">
-            <a href="https://www.privacypolicies.com/live/76b94668-42bd-4a3c-b478-6836aa53080b" target="_blank" rel="noopener noreferrer" className="hover:text-slate-300 transition-colors">Privacy</a>
-            <a href="https://www.privacypolicies.com/live/65e04349-dc8f-4bec-94f0-923e7e3159f9" target="_blank" rel="noopener noreferrer" className="hover:text-slate-300 transition-colors">Terms</a>
+          <div className="flex gap-6 text-xs text-slate-200 tracking-widest uppercase">
+            <a href="https://www.privacypolicies.com/live/76b94668-42bd-4a3c-b478-6836aa53080b" target="_blank" rel="noopener noreferrer" className="hover:text-slate-200 transition-colors">Privacy</a>
+            <a href="https://www.privacypolicies.com/live/65e04349-dc8f-4bec-94f0-923e7e3159f9" target="_blank" rel="noopener noreferrer" className="hover:text-slate-200 transition-colors">Terms</a>
           </div>
         </motion.div>
       </div>

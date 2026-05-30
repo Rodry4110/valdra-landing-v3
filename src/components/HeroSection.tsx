@@ -202,7 +202,7 @@ export function HeroSection() {
         </span>
 
         {/* Desktop nav */}
-        <ul className="hidden md:flex items-center gap-9 text-[11px] font-medium tracking-widest uppercase text-slate-300">
+        <ul className="hidden md:flex items-center gap-9 text-[11px] font-medium tracking-widest uppercase text-slate-200">
           {NAV_ITEMS.map((item) => (
             <li key={item}>
               <a
@@ -219,7 +219,7 @@ export function HeroSection() {
         <div className="hidden md:flex items-center gap-5">
           <a
             href="mailto:studio@valdraco.com"
-            className="flex items-center gap-2 text-[11px] font-medium tracking-widest uppercase text-slate-300 hover:text-[#0ea5e9] transition-colors duration-200"
+            className="flex items-center gap-2 text-[11px] font-medium tracking-widest uppercase text-slate-200 hover:text-[#0ea5e9] transition-colors duration-200"
           >
             <Mail size={11} />
             studio@valdraco.com
@@ -263,7 +263,7 @@ export function HeroSection() {
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="text-slate-300 text-sm font-medium tracking-[0.25em] uppercase hover:text-white transition-colors"
+                className="text-slate-200 text-sm font-medium tracking-[0.25em] uppercase hover:text-white transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
                 {item}
@@ -343,7 +343,7 @@ export function HeroSection() {
               initial="hidden"
               animate={subtextCtrl}
               className="font-light leading-relaxed mb-10"
-              style={{ fontSize: 'clamp(0.95rem, 1.9vw, 1.05rem)', maxWidth: '460px', color: 'rgba(203,213,225,0.92)' }}
+              style={{ fontSize: 'clamp(0.95rem, 1.9vw, 1.05rem)', maxWidth: '460px', color: 'rgba(226,232,240,0.96)' }}
             >
               Strategy, design, and code built for businesses that refuse to settle
               for average. One boutique team. One goal: your growth.

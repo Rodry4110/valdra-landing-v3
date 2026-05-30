@@ -70,7 +70,7 @@ export function WorkSection() {
             Services Built<br />
             <span style={{ color: '#0ea5e9' }}>For Growth.</span>
           </h2>
-          <p className="text-slate-300 text-sm mt-5 max-w-lg leading-relaxed">
+          <p className="text-slate-200 text-sm mt-5 max-w-lg leading-relaxed">
             We focus on what actually moves the needle for small and mid-size businesses.
             No fluff — just strategy, execution, and results you can see.
           </p>
@@ -104,11 +104,11 @@ export function WorkSection() {
                   >
                     {service.name}
                   </h3>
-                  <span className="text-xs px-2 py-0.5 rounded-full text-slate-300 border border-white/[0.08] flex-shrink-0 mt-0.5">
+                  <span className="text-xs px-2 py-0.5 rounded-full text-slate-200 border border-white/[0.08] flex-shrink-0 mt-0.5">
                     {service.category}
                   </span>
                 </div>
-                <p className="text-slate-300 text-sm leading-relaxed max-w-xl">{service.description}</p>
+                <p className="text-slate-200 text-sm leading-relaxed max-w-xl">{service.description}</p>
                 <div className="flex flex-wrap gap-2 mt-3">
                   {service.tags.map(tag => (
                     <span
@@ -131,7 +131,7 @@ export function WorkSection() {
                   >
                     {service.metric}
                   </div>
-                  <div className="text-slate-300 text-xs tracking-widest uppercase mt-1">{service.metricLabel}</div>
+                  <div className="text-slate-200 text-xs tracking-widest uppercase mt-1">{service.metricLabel}</div>
                 </div>
                 <div
                   className="w-9 h-9 rounded-full border flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:translate-x-1"
@@ -152,7 +152,7 @@ export function WorkSection() {
           transition={{ duration: 0.6 }}
           className="mt-14 pt-10 border-t border-white/[0.05] flex flex-col sm:flex-row items-center justify-between gap-6"
         >
-          <p className="text-slate-300 text-sm max-w-md">
+          <p className="text-slate-200 text-sm max-w-md">
             Not sure which service fits your business? Let's talk through it — no commitment required.
           </p>
           <a

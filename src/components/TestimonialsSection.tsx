@@ -126,7 +126,7 @@ export function TestimonialsSection() {
               <span style={{ color: '#f59e0b' }}>Clients Say.</span>
             </h2>
           </div>
-          <p className="text-slate-300 text-xs tracking-widest uppercase md:text-right md:max-w-[180px] leading-relaxed">
+          <p className="text-slate-200 text-xs tracking-widest uppercase md:text-right md:max-w-[180px] leading-relaxed">
             Real businesses<br className="hidden md:block" /> right here in Western NC
           </p>
         </motion.div>
@@ -199,7 +199,7 @@ export function TestimonialsSection() {
               </div>
               <div>
                 <div className="text-white font-semibold">{featured.name}</div>
-                <div className="text-slate-300 text-xs mt-0.5">{featured.business}</div>
+                <div className="text-slate-200 text-xs mt-0.5">{featured.business}</div>
               </div>
             </div>
 
@@ -240,7 +240,7 @@ export function TestimonialsSection() {
                 </div>
 
                 {/* Quote */}
-                <p className="text-slate-300 text-sm leading-relaxed italic flex-1 mb-6">
+                <p className="text-slate-200 text-sm leading-relaxed italic flex-1 mb-6">
                   "{review.text}"
                 </p>
 
@@ -261,7 +261,7 @@ export function TestimonialsSection() {
                   </div>
                   <div>
                     <div className="text-white text-sm font-semibold">{review.name}</div>
-                    <div className="text-slate-300 text-xs mt-0.5">{review.business}</div>
+                    <div className="text-slate-200 text-xs mt-0.5">{review.business}</div>
                   </div>
                 </div>
 

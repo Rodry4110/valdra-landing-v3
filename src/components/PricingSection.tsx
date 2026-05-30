@@ -155,7 +155,7 @@ export function PricingSection() {
               <span style={{ color: '#f59e0b' }}>Digital Solutions.</span>
             </h2>
           </div>
-          <p className="text-slate-300 text-xs tracking-widest uppercase md:text-right md:max-w-[180px] leading-relaxed">
+          <p className="text-slate-200 text-xs tracking-widest uppercase md:text-right md:max-w-[180px] leading-relaxed">
             Everything you need<br className="hidden md:block" /> under one roof
           </p>
         </motion.div>
@@ -208,20 +208,20 @@ export function PricingSection() {
                 >
                   {plan.name}
                 </h3>
-                <p className="text-slate-300 text-sm leading-relaxed mb-7">{plan.desc}</p>
+                <p className="text-slate-200 text-sm leading-relaxed mb-7">{plan.desc}</p>
 
                 {/* Price */}
                 <div className="mb-8">
                   <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '3rem', color: plan.accent, fontWeight: 'bold' }}>
                     {plan.price}
                   </span>
-                  <span className="text-slate-300 text-base ml-1">{plan.period}</span>
+                  <span className="text-slate-200 text-base ml-1">{plan.period}</span>
                 </div>
 
                 {/* Features */}
                 <ul className="flex flex-col gap-0 mb-9 flex-1">
                   {plan.features.map((f) => (
-                    <li key={f} className="flex items-center gap-3 py-2.5 border-b border-white/[0.06] text-sm text-slate-300">
+                    <li key={f} className="flex items-center gap-3 py-2.5 border-b border-white/[0.06] text-sm text-slate-200">
                       <span
                         className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
                         style={{ background: `${plan.accent}20`, border: `1px solid ${plan.accent}40` }}
@@ -318,9 +318,9 @@ export function PricingSection() {
                 </h3>
                 <p className="mb-1">
                   <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '2.2rem', color: '#0ea5e9', fontWeight: 'bold' }}>$299</span>
-                  <span className="text-slate-300 text-sm ml-1">/month</span>
+                  <span className="text-slate-200 text-sm ml-1">/month</span>
                 </p>
-                <p className="text-slate-300 text-xs tracking-wide">Add to any plan · Cancel anytime</p>
+                <p className="text-slate-200 text-xs tracking-wide">Add to any plan · Cancel anytime</p>
               </div>
 
               {/* Divider */}
@@ -329,7 +329,7 @@ export function PricingSection() {
               {/* Middle — features */}
               <ul className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-0">
                 {addonFeatures.map((f) => (
-                  <li key={f} className="flex items-center gap-2 py-2.5 border-b border-white/[0.05] text-sm text-slate-300">
+                  <li key={f} className="flex items-center gap-2 py-2.5 border-b border-white/[0.05] text-sm text-slate-200">
                     <Check size={11} style={{ color: '#0ea5e9', flexShrink: 0 }} />
                     {f}
                   </li>
