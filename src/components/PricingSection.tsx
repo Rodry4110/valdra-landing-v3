@@ -288,16 +288,15 @@ export function PricingSection() {
           whileInView={{ opacity: 1, transform: 'translateY(0px)' }}
           viewport={{ once: false, margin: '0px 0px -180px 0px' }}
           transition={{ duration: 0.65, delay: 0.54, ease: [0.16, 1, 0.3, 1] }}
-          className="hidden md:block"
+          className="block"
         >
           <TiltCard
             accentColor="#0ea5e9"
-            className="relative cursor-default"
+            className="relative cursor-default p-7 md:py-9 md:px-10"
             style={{
               background: 'linear-gradient(135deg, rgba(14,165,233,0.07), rgba(245,158,11,0.03))',
               border: '1px solid rgba(14,165,233,0.18)',
               borderRadius: '4px 20px 4px 20px',
-              padding: '36px 40px',
             }}
           >
             <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-12">
