@@ -6,7 +6,7 @@ import emailjs from '@emailjs/browser'
 type SubmitState = 'idle' | 'loading' | 'success' | 'error'
 
 export function ContactSection() {
-  const [fields, setFields] = useState({ name: '', email: '', phone: '', business: '', interest: '', message: '' })
+  const [fields, setFields] = useState({ name: '', email: '', phone: '', business: '', businessOther: '', interest: '', message: '' })
   const [submitState, setSubmitState] = useState<SubmitState>('idle')
 
   const update =
@@ -25,7 +25,9 @@ export function ContactSection() {
         {
           from_name:  fields.name,
           from_email: fields.email,
-          service:    fields.business,
+          service:    fields.business === 'other'
+                        ? (fields.businessOther.trim() || 'Other')
+                        : fields.business,
           interest:   fields.interest || 'Not specified',
           message:    fields.message,
           phone:      fields.phone || 'Not provided',
@@ -142,7 +144,7 @@ export function ContactSection() {
                   <button
                     onClick={() => {
                       setSubmitState('idle')
-                      setFields({ name: '', email: '', phone: '', business: '', interest: '', message: '' })
+                      setFields({ name: '', email: '', phone: '', business: '', businessOther: '', interest: '', message: '' })
                     }}
                     className="text-xs tracking-widest uppercase text-slate-600 hover:text-[#0ea5e9]"
                     style={{ transition: 'color 200ms ease' }}
@@ -227,6 +229,26 @@ export function ContactSection() {
                       <option value="retail"     className="bg-[#050d1a]">Retail / E-Commerce</option>
                       <option value="other"      className="bg-[#050d1a]">Other</option>
                     </select>
+
+                    {/* Reveal a free-text input when "Other" is selected */}
+                    <AnimatePresence>
+                      {fields.business === 'other' && (
+                        <motion.input
+                          key="business-other"
+                          initial={{ opacity: 0, transform: 'translateY(-6px)' }}
+                          animate={{ opacity: 1, transform: 'translateY(0px)' }}
+                          exit={{ opacity: 0, transform: 'translateY(-6px)' }}
+                          transition={{ duration: 0.25 }}
+                          type="text"
+                          placeholder="Tell us your business type…"
+                          required
+                          value={fields.businessOther}
+                          onChange={update('businessOther')}
+                          className={`${inputClass} mt-2`}
+                          style={inputStyle}
+                        />
+                      )}
+                    </AnimatePresence>
                   </div>
 
                   <div className="flex flex-col gap-2">

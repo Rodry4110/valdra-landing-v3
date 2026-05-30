@@ -310,7 +310,7 @@ export function HeroSection() {
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#0ea5e9]/28 bg-[#0ea5e9]/5">
                 <Zap size={10} className="text-[#0ea5e9]" />
                 <span className="text-[#0ea5e9] text-[10px] font-medium tracking-[0.22em] uppercase">
-                  Digital Agency · Asheville, NC
+                  Web Design & Digital Marketing · Asheville, NC
                 </span>
               </div>
             </motion.div>
