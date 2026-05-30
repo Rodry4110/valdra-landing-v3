@@ -202,7 +202,7 @@ export function HeroSection() {
         </span>
 
         {/* Desktop nav */}
-        <ul className="hidden md:flex items-center gap-9 text-[11px] font-medium tracking-widest uppercase text-slate-500">
+        <ul className="hidden md:flex items-center gap-9 text-[11px] font-medium tracking-widest uppercase text-slate-300">
           {NAV_ITEMS.map((item) => (
             <li key={item}>
               <a
@@ -219,7 +219,7 @@ export function HeroSection() {
         <div className="hidden md:flex items-center gap-5">
           <a
             href="mailto:studio@valdraco.com"
-            className="flex items-center gap-2 text-[10px] font-medium tracking-widest uppercase text-slate-500 hover:text-[#0ea5e9] transition-colors duration-200"
+            className="flex items-center gap-2 text-[11px] font-medium tracking-widest uppercase text-slate-300 hover:text-[#0ea5e9] transition-colors duration-200"
           >
             <Mail size={11} />
             studio@valdraco.com
@@ -343,7 +343,7 @@ export function HeroSection() {
               initial="hidden"
               animate={subtextCtrl}
               className="font-light leading-relaxed mb-10"
-              style={{ fontSize: 'clamp(0.88rem, 1.9vw, 1.03rem)', maxWidth: '460px', color: 'rgba(148,163,184,0.78)' }}
+              style={{ fontSize: 'clamp(0.95rem, 1.9vw, 1.05rem)', maxWidth: '460px', color: 'rgba(203,213,225,0.92)' }}
             >
               Strategy, design, and code built for businesses that refuse to settle
               for average. One boutique team. One goal: your growth.
@@ -439,7 +439,7 @@ export function HeroSection() {
                   Available for new projects
                 </span>
               </div>
-              <span className="text-[9px] tracking-[0.25em] uppercase font-medium" style={{ color: 'rgba(100,116,139,0.6)' }}>
+              <span className="text-[10px] tracking-[0.25em] uppercase font-medium" style={{ color: 'rgba(148,163,184,0.85)' }}>
                 Asheville, NC
               </span>
             </motion.div>

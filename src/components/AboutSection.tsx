@@ -87,11 +87,11 @@ export function AboutSection() {
 
             {/* Location + year */}
             <div className="mt-8 space-y-2">
-              <div className="flex items-center gap-2 text-slate-400 text-sm">
+              <div className="flex items-center gap-2 text-slate-300 text-sm">
                 <MapPin size={13} className="text-[#f59e0b] flex-shrink-0" />
                 <span>Asheville, Western NC</span>
               </div>
-              <div className="text-slate-600 text-[10px] tracking-[0.3em] uppercase pl-5">
+              <div className="text-slate-300 text-[11px] tracking-[0.3em] uppercase pl-5">
                 Est. 2026 · Boutique Agency
               </div>
             </div>
@@ -122,7 +122,7 @@ export function AboutSection() {
 
             <motion.p
               {...fadeUp(0.2)}
-              className="text-slate-400 leading-relaxed mb-5 max-w-lg"
+              className="text-slate-300 leading-relaxed mb-5 max-w-lg"
               style={{ fontSize: 'clamp(0.875rem, 1.2vw, 1rem)' }}
             >
               Valdra is a boutique digital agency rooted in the mountains of Western
@@ -133,7 +133,7 @@ export function AboutSection() {
 
             <motion.p
               {...fadeUp(0.28)}
-              className="text-slate-500 leading-relaxed max-w-lg"
+              className="text-slate-300 leading-relaxed max-w-lg"
               style={{ fontSize: 'clamp(0.875rem, 1.2vw, 1rem)' }}
             >
               No cookie-cutter templates. No offshore handoffs. Strategy, design,
@@ -195,7 +195,7 @@ export function AboutSection() {
                   {title}
                 </h3>
 
-                <p className="text-slate-500 text-sm leading-relaxed">{body}</p>
+                <p className="text-slate-300 text-sm leading-relaxed">{body}</p>
               </motion.div>
             ))}
           </div>

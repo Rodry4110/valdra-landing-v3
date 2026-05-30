@@ -142,7 +142,7 @@ export function WhyUsSection() {
               <span style={{ color: '#0ea5e9' }}>Choose Us.</span>
             </h2>
           </div>
-          <p className="text-slate-600 text-xs tracking-widest uppercase md:text-right md:max-w-[180px] leading-relaxed">
+          <p className="text-slate-300 text-xs tracking-widest uppercase md:text-right md:max-w-[180px] leading-relaxed">
             Six reasons<br className="hidden md:block" /> that make the difference
           </p>
         </motion.div>
@@ -207,12 +207,12 @@ export function WhyUsSection() {
                     >
                       5–14
                     </span>
-                    <span className="text-slate-500 text-[10px] tracking-widest uppercase">Day Delivery</span>
+                    <span className="text-slate-300 text-[11px] tracking-widest uppercase">Day Delivery</span>
                   </div>
                 )}
 
                 {/* Body */}
-                <p className="text-slate-500 text-sm leading-relaxed relative z-10" style={{ maxWidth: card.wide ? '520px' : undefined }}>
+                <p className="text-slate-300 text-sm leading-relaxed relative z-10" style={{ maxWidth: card.wide ? '520px' : undefined }}>
                   {card.body}
                 </p>
 
@@ -297,7 +297,7 @@ export function WhyUsSection() {
                 >
                   <X size={9} style={{ color: '#ef4444' }} />
                 </span>
-                <span className="text-xs text-slate-500">{row.agency}</span>
+                <span className="text-xs text-slate-300">{row.agency}</span>
               </div>
 
               <div className="flex items-center justify-center gap-1.5">
@@ -307,7 +307,7 @@ export function WhyUsSection() {
                 >
                   <X size={9} style={{ color: '#ef4444' }} />
                 </span>
-                <span className="text-xs text-slate-500">{row.freelancer}</span>
+                <span className="text-xs text-slate-300">{row.freelancer}</span>
               </div>
             </motion.div>
           ))}

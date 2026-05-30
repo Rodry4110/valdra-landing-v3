@@ -805,7 +805,7 @@ export function MarqueeSection() {
         >
           Every <span style={{ color: '#0ea5e9' }}>Industry</span>
         </h2>
-        <p className="text-slate-500 mt-4 text-sm leading-relaxed">
+        <p className="text-slate-300 mt-4 text-sm leading-relaxed">
           Concept builds we're shipping piece by piece. Hover any card to scroll through the page.
         </p>
       </motion.div>

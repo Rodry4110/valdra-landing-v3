@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, Mail, MapPin, Clock, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
+import { ArrowRight, Mail, MapPin, Clock, CalendarDays, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
 import emailjs from '@emailjs/browser'
 
 type SubmitState = 'idle' | 'loading' | 'success' | 'error'
@@ -73,16 +73,17 @@ export function ContactSection() {
                 Ready to<br />
                 <span style={{ color: '#0ea5e9' }}>Stand Out?</span>
               </h2>
-              <p className="text-slate-400 leading-relaxed max-w-md mb-10">
+              <p className="text-slate-300 leading-relaxed max-w-md mb-10">
                 Tell us about your project. We'll get back to you within 24 hours with a clear plan and honest pricing.
               </p>
 
               {/* Contact info */}
               <div className="flex flex-col gap-5">
                 {[
-                  { icon: Mail,   label: 'Email Us',       value: 'studio@valdraco.com',           accent: '#0ea5e9' },
-                  { icon: MapPin, label: 'Based In',        value: 'Western NC — Remote Friendly',  accent: '#f59e0b' },
-                  { icon: Clock,  label: 'Response Time',   value: 'Within 24 hours, always',       accent: '#34d399' },
+                  { icon: Mail,         label: 'Email Us',       value: 'studio@valdraco.com',           accent: '#0ea5e9' },
+                  { icon: MapPin,       label: 'Based In',        value: 'Western NC — Remote Friendly',  accent: '#f59e0b' },
+                  { icon: CalendarDays, label: 'Hours',           value: 'Mon–Fri · 9am–6pm EST',         accent: '#a78bfa' },
+                  { icon: Clock,        label: 'Response Time',   value: 'Within 24 hours, always',       accent: '#34d399' },
                 ].map(({ icon: Icon, label, value, accent }) => (
                   <div key={label} className="flex items-center gap-4">
                     <div
@@ -92,7 +93,7 @@ export function ContactSection() {
                       <Icon size={15} style={{ color: accent }} />
                     </div>
                     <div>
-                      <div className="text-slate-600 text-xs tracking-widest uppercase">{label}</div>
+                      <div className="text-slate-300 text-xs tracking-widest uppercase">{label}</div>
                       <div className="text-white text-sm font-medium mt-0.5">{value}</div>
                     </div>
                   </div>
@@ -211,7 +212,7 @@ export function ContactSection() {
                     <select
                       value={fields.business}
                       onChange={update('business')}
-                      className="rounded-xl px-4 py-3 text-slate-400 text-sm outline-none appearance-none cursor-pointer focus:border-[#0ea5e9]/50"
+                      className="rounded-xl px-4 py-3 text-slate-300 text-sm outline-none appearance-none cursor-pointer focus:border-[#0ea5e9]/50"
                       style={{
                         background: 'rgba(255,255,255,0.04)',
                         border: '1px solid rgba(255,255,255,0.08)',
@@ -233,7 +234,7 @@ export function ContactSection() {
                     <select
                       value={fields.interest}
                       onChange={update('interest')}
-                      className="rounded-xl px-4 py-3 text-slate-400 text-sm outline-none appearance-none cursor-pointer focus:border-[#0ea5e9]/50"
+                      className="rounded-xl px-4 py-3 text-slate-300 text-sm outline-none appearance-none cursor-pointer focus:border-[#0ea5e9]/50"
                       style={{
                         background: 'rgba(255,255,255,0.04)',
                         border: '1px solid rgba(255,255,255,0.08)',
@@ -317,17 +318,17 @@ export function ContactSection() {
           className="mt-24 pt-8 border-t border-white/[0.05] flex flex-col md:flex-row items-center justify-between gap-4"
         >
           <span
-            className="text-white/30 font-bold tracking-[0.25em] text-sm uppercase"
+            className="text-white/50 font-bold tracking-[0.25em] text-sm uppercase"
             style={{ fontFamily: 'Syncopate, sans-serif' }}
           >
-            VALDRA<span className="text-[#0ea5e9]/40"> · </span>CO
+            VALDRA<span className="text-[#0ea5e9]/70"> · </span>CO
           </span>
-          <p className="text-slate-700 text-xs tracking-widest">
+          <p className="text-slate-300 text-xs tracking-widest">
             © 2026 Valdra Co. All rights reserved. — Western NC
           </p>
-          <div className="flex gap-6 text-xs text-slate-700 tracking-widest uppercase">
-            <a href="https://www.privacypolicies.com/live/76b94668-42bd-4a3c-b478-6836aa53080b" target="_blank" rel="noopener noreferrer" className="hover:text-slate-400 transition-colors">Privacy</a>
-            <a href="https://www.privacypolicies.com/live/65e04349-dc8f-4bec-94f0-923e7e3159f9" target="_blank" rel="noopener noreferrer" className="hover:text-slate-400 transition-colors">Terms</a>
+          <div className="flex gap-6 text-xs text-slate-300 tracking-widest uppercase">
+            <a href="https://www.privacypolicies.com/live/76b94668-42bd-4a3c-b478-6836aa53080b" target="_blank" rel="noopener noreferrer" className="hover:text-slate-300 transition-colors">Privacy</a>
+            <a href="https://www.privacypolicies.com/live/65e04349-dc8f-4bec-94f0-923e7e3159f9" target="_blank" rel="noopener noreferrer" className="hover:text-slate-300 transition-colors">Terms</a>
           </div>
         </motion.div>
       </div>

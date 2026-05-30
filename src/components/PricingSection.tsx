@@ -155,7 +155,7 @@ export function PricingSection() {
               <span style={{ color: '#f59e0b' }}>Digital Solutions.</span>
             </h2>
           </div>
-          <p className="text-slate-600 text-xs tracking-widest uppercase md:text-right md:max-w-[180px] leading-relaxed">
+          <p className="text-slate-300 text-xs tracking-widest uppercase md:text-right md:max-w-[180px] leading-relaxed">
             Everything you need<br className="hidden md:block" /> under one roof
           </p>
         </motion.div>
@@ -208,14 +208,14 @@ export function PricingSection() {
                 >
                   {plan.name}
                 </h3>
-                <p className="text-slate-500 text-sm leading-relaxed mb-7">{plan.desc}</p>
+                <p className="text-slate-300 text-sm leading-relaxed mb-7">{plan.desc}</p>
 
                 {/* Price */}
                 <div className="mb-8">
                   <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '3rem', color: plan.accent, fontWeight: 'bold' }}>
                     {plan.price}
                   </span>
-                  <span className="text-slate-500 text-base ml-1">{plan.period}</span>
+                  <span className="text-slate-300 text-base ml-1">{plan.period}</span>
                 </div>
 
                 {/* Features */}
@@ -318,9 +318,9 @@ export function PricingSection() {
                 </h3>
                 <p className="mb-1">
                   <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '2.2rem', color: '#0ea5e9', fontWeight: 'bold' }}>$299</span>
-                  <span className="text-slate-500 text-sm ml-1">/month</span>
+                  <span className="text-slate-300 text-sm ml-1">/month</span>
                 </p>
-                <p className="text-slate-600 text-xs tracking-wide">Add to any plan · Cancel anytime</p>
+                <p className="text-slate-300 text-xs tracking-wide">Add to any plan · Cancel anytime</p>
               </div>
 
               {/* Divider */}
