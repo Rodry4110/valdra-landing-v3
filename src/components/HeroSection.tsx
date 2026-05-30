@@ -292,8 +292,8 @@ export function HeroSection() {
       {/* ── HERO BODY — two-column at lg ───────────────────────────────────── */}
       <div
         ref={bodyRef}
-        className="relative flex-1 flex flex-col justify-center px-6 md:px-14 lg:px-20 pt-0 pb-12"
-        style={{ zIndex: 20, position: 'relative', transform: 'translateY(-48px)' }}
+        className="relative flex-1 flex flex-col justify-start md:justify-center px-6 md:px-14 lg:px-20 pt-28 md:pt-0 pb-12 md:-translate-y-12"
+        style={{ zIndex: 20, position: 'relative' }}
       >
         <div className="w-full max-w-4xl">
 
@@ -396,7 +396,7 @@ export function HeroSection() {
             variants={statsContainer}
             initial="hidden"
             animate={statsCtrl}
-            className="mt-32 pt-8 border-t border-white/[0.08] grid grid-cols-1 sm:grid-cols-3"
+            className="mt-12 md:mt-32 pt-8 border-t border-white/[0.08] grid grid-cols-1 sm:grid-cols-3"
           >
             {/* Response Time */}
             <motion.div variants={statItem} className="flex flex-col gap-1.5 py-5 sm:py-0 sm:pr-8 border-b border-white/[0.06] sm:border-b-0 sm:border-r sm:border-white/[0.08]">
