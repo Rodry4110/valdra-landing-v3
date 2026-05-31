@@ -1,8 +1,25 @@
-import { useRef } from 'react'
-import { motion } from 'framer-motion'
-import { ArrowRight, Check } from 'lucide-react'
+import { useRef, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ArrowRight, Check, ChevronDown, Lock, Server } from 'lucide-react'
 
-const plans = [
+type Plan = {
+  tier: string
+  name: string
+  desc: string
+  price: string
+  period: string
+  accent: string
+  featured: boolean
+  ownership?: boolean        // shows the "you own it" lock badge
+  note?: string              // small badge, e.g. "We host & manage · Cancel anytime"
+  fine?: string              // small print under features (transparency)
+  upsells?: string[]
+  features: string[]
+  visibleCount?: number      // how many features show before "See everything"
+}
+
+// ── One-time builds (you own it) ───────────────────────────────────────────────
+const ownPlans: Plan[] = [
   {
     tier: 'Tier 1',
     name: 'Base Website',
@@ -11,6 +28,7 @@ const plans = [
     period: 'one-time',
     accent: '#0ea5e9',
     featured: false,
+    ownership: true,
     upsells: ['+ Google Business Setup · $149', '+ 3D Animations · $249'],
     features: [
       'Custom-Built for Your Brand',
@@ -31,6 +49,7 @@ const plans = [
     period: 'one-time',
     accent: '#f59e0b',
     featured: true,
+    ownership: true,
     upsells: ['+ Google Business Setup · $149'],
     features: [
       'Everything in Base',
@@ -42,13 +61,37 @@ const plans = [
       'Priority Support',
     ],
   },
+]
+
+// ── Monthly, hosted & managed by Valdra ────────────────────────────────────────
+const hostedPlans: Plan[] = [
+  {
+    tier: 'Monthly',
+    name: 'Hosted Website',
+    desc: "Get online for a low monthly cost — we build, host, and maintain everything. Perfect if you'd rather not pay a big lump sum upfront.",
+    price: '$149',
+    period: '/month',
+    accent: '#34d399',
+    featured: false,
+    note: 'We Host & Manage · Cancel Anytime',
+    fine: 'Site is hosted & maintained by Valdra. If you cancel, the website and its ownership remain with Valdra.',
+    features: [
+      'Custom-Built for Your Brand',
+      'Hosting Included — Fast & Secure',
+      'Mobile Responsive',
+      'Unlimited Content Updates',
+      'Ongoing Support Included',
+      'Basic SEO Setup',
+      'No Big Upfront Cost',
+    ],
+  },
   {
     tier: 'Monthly',
     name: 'Digital Marketing',
     desc: 'We run your marketing, bring you leads, and prove it with real data every month. Ad spend billed separately.',
     price: '$1,499',
     period: '/month',
-    accent: '#34d399',
+    accent: '#a78bfa',
     featured: false,
     features: [
       'Social Media Management',
@@ -122,125 +165,165 @@ function TiltCard({ children, className, style, accentColor = '#0ea5e9' }: { chi
   )
 }
 
-// ── Section ───────────────────────────────────────────────────────────────────
-export function PricingSection() {
+// ── Group divider label ────────────────────────────────────────────────────────
+function GroupLabel({ children }: { children: React.ReactNode }) {
   return (
-    <section id="pricing" className="relative py-12 md:py-28 px-6 md:px-14 overflow-hidden" style={{ background: '#050d1a' }}>
-      {/* Top separator */}
-      <div className="absolute top-0 left-14 right-14 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(14,165,233,0.3), transparent)' }} />
+    <div className="flex items-center gap-4 mb-8">
+      <div className="h-px flex-1" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.14))' }} />
+      <span className="text-[11px] md:text-xs font-semibold tracking-[0.25em] uppercase text-slate-200 whitespace-nowrap">
+        {children}
+      </span>
+      <div className="h-px flex-1" style={{ background: 'linear-gradient(90deg, rgba(255,255,255,0.14), transparent)' }} />
+    </div>
+  )
+}
 
-      {/* Faint amber glow — center */}
-      <div
-        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] opacity-[0.04]"
-        style={{ background: 'radial-gradient(ellipse, #f59e0b 0%, transparent 65%)' }}
-      />
+// ── Single plan card (compact → click to expand) ───────────────────────────────
+function PlanCard({ plan, index }: { plan: Plan; index: number }) {
+  const [open, setOpen] = useState(false)
 
-      <div className="max-w-6xl mx-auto">
+  const Row = (f: string) => (
+    <div key={f} className="flex items-center gap-3 py-2.5 border-b border-white/[0.06] text-sm text-slate-200">
+      <span
+        className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
+        style={{ background: `${plan.accent}20`, border: `1px solid ${plan.accent}40` }}
+      >
+        <Check size={10} style={{ color: plan.accent }} />
+      </span>
+      {f}
+    </div>
+  )
 
-        {/* ── Header — left-aligned, eyebrow right ──────────────────────── */}
-        <motion.div
-          initial={{ opacity: 0, transform: 'translateY(24px)' }}
-          whileInView={{ opacity: 1, transform: 'translateY(0px)' }}
-          viewport={{ once: false }}
-          transition={{ duration: 0.7 }}
-          className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-16"
-        >
-          <div>
-            <p className="text-[#0ea5e9] text-xs font-medium tracking-[0.3em] uppercase mb-4">Our Plans</p>
-            <h2
-              className="font-bold uppercase leading-none"
-              style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 'clamp(2.8rem, 6vw, 5.5rem)', color: 'white' }}
+  return (
+    <motion.div
+      initial={{ opacity: 0, transform: 'translateY(56px)' }}
+      whileInView={{ opacity: 1, transform: 'translateY(0px)' }}
+      viewport={{ once: true, margin: '0px 0px -80px 0px' }}
+      transition={{ duration: 0.6, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
+      className={plan.featured ? 'md:-mt-3' : ''}
+    >
+      <TiltCard
+        accentColor={plan.accent}
+        className="relative h-full flex flex-col"
+        style={{
+          background: plan.featured
+            ? 'linear-gradient(135deg, rgba(245,158,11,0.08) 0%, rgba(14,165,233,0.04) 100%)'
+            : 'rgba(255,255,255,0.025)',
+          border: plan.featured ? '1px solid rgba(245,158,11,0.4)' : '1px solid rgba(255,255,255,0.07)',
+          borderRadius: '4px 20px 4px 20px',
+          padding: plan.featured ? '40px 32px' : '34px 30px',
+          boxShadow: plan.featured ? '0 0 40px rgba(245,158,11,0.12)' : 'none',
+        }}
+      >
+        {/* Most Popular badge */}
+        {plan.featured && (
+          <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+            <span
+              className="text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full whitespace-nowrap"
+              style={{ background: 'linear-gradient(135deg, #f59e0b, #d97706)', color: '#050d1a' }}
             >
-              Full-Stack<br />
-              <span style={{ color: '#f59e0b' }}>Digital Solutions.</span>
-            </h2>
+              Most Popular
+            </span>
           </div>
-          <p className="text-slate-200 text-xs tracking-widest uppercase md:text-right md:max-w-[180px] leading-relaxed">
-            Everything you need<br className="hidden md:block" /> under one roof
+        )}
+
+        {/* ── Compact header (always visible · click to toggle) ──────────── */}
+        <button
+          type="button"
+          onClick={() => setOpen(v => !v)}
+          className="w-full text-left cursor-pointer group"
+          aria-expanded={open}
+        >
+          {/* Tier label */}
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-3" style={{ color: plan.accent }}>
+            {plan.tier}
           </p>
-        </motion.div>
 
-        {/* ── Plan cards ────────────────────────────────────────────────── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4 items-start">
-          {plans.map((plan, i) => (
-            <motion.div
-              key={plan.name}
-              initial={{ opacity: 0, transform: 'translateY(64px)' }}
-              whileInView={{ opacity: 1, transform: 'translateY(0px)' }}
-              viewport={{ once: false, margin: '0px 0px -180px 0px' }}
-              transition={{ duration: 0.65, delay: i * 0.18, ease: [0.16, 1, 0.3, 1] }}
-              className={plan.featured ? 'md:-mt-4' : ''}
+          {/* Ownership / hosting badge */}
+          {plan.ownership && (
+            <div
+              className="inline-flex items-center gap-1.5 text-[10px] font-semibold tracking-[0.12em] uppercase px-2.5 py-1 rounded-full mb-3 w-fit"
+              style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.14)', color: '#e2e8f0' }}
             >
-              <TiltCard
-                accentColor={plan.accent}
-                className="relative h-full flex flex-col cursor-default"
-                style={{
-                  background: plan.featured
-                    ? 'linear-gradient(135deg, rgba(245,158,11,0.08) 0%, rgba(14,165,233,0.04) 100%)'
-                    : 'rgba(255,255,255,0.025)',
-                  border: plan.featured ? '1px solid rgba(245,158,11,0.4)' : '1px solid rgba(255,255,255,0.07)',
-                  borderRadius: '4px 20px 4px 20px',
-                  padding: plan.featured ? '48px 36px' : '40px 32px',
-                  boxShadow: plan.featured ? '0 0 40px rgba(245,158,11,0.12)' : 'none',
-                }}
-              >
-                {/* Most Popular badge */}
-                {plan.featured && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                    <span
-                      className="text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full whitespace-nowrap"
-                      style={{ background: 'linear-gradient(135deg, #f59e0b, #d97706)', color: '#050d1a' }}
-                    >
-                      Most Popular
-                    </span>
-                  </div>
-                )}
+              <Lock size={10} /> One-Time · You Own It
+            </div>
+          )}
+          {plan.note && (
+            <div
+              className="inline-flex items-center gap-1.5 text-[10px] font-semibold tracking-[0.12em] uppercase px-2.5 py-1 rounded-full mb-3 w-fit"
+              style={{ background: `${plan.accent}18`, border: `1px solid ${plan.accent}35`, color: plan.accent }}
+            >
+              <Server size={10} /> {plan.note}
+            </div>
+          )}
 
-                {/* Tier label */}
-                <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-3" style={{ color: plan.accent }}>
-                  {plan.tier}
-                </p>
+          {/* Name */}
+          <h3
+            className="text-white font-bold mb-2"
+            style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '1.6rem', letterSpacing: '0.05em' }}
+          >
+            {plan.name}
+          </h3>
 
-                {/* Name */}
-                <h3
-                  className="text-white font-bold mb-2"
-                  style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '1.6rem', letterSpacing: '0.05em' }}
-                >
-                  {plan.name}
-                </h3>
-                <p className="text-slate-200 text-sm leading-relaxed mb-7">{plan.desc}</p>
+          {/* Price */}
+          <div className="mb-4">
+            <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '3rem', color: plan.accent, fontWeight: 'bold' }}>
+              {plan.price}
+            </span>
+            <span className="text-slate-200 text-base ml-1">{plan.period}</span>
+          </div>
 
-                {/* Price */}
-                <div className="mb-8">
-                  <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '3rem', color: plan.accent, fontWeight: 'bold' }}>
-                    {plan.price}
-                  </span>
-                  <span className="text-slate-200 text-base ml-1">{plan.period}</span>
-                </div>
+          {/* Expand affordance */}
+          <div
+            className="flex items-center justify-between gap-2 rounded-lg px-3 py-2.5 transition group-hover:brightness-125"
+            style={{ background: `${plan.accent}10`, border: `1px solid ${plan.accent}25` }}
+          >
+            <span className="text-xs font-semibold tracking-wide uppercase" style={{ color: plan.accent }}>
+              {open ? 'Hide details' : 'View plan details'}
+            </span>
+            <ChevronDown
+              size={15}
+              style={{ color: plan.accent, transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 800ms cubic-bezier(0.22,1,0.36,1)' }}
+            />
+          </div>
+        </button>
+
+        {/* ── Expanded body (features + CTA) ─────────────────────────────── */}
+        <AnimatePresence initial={false}>
+          {open && (
+            <motion.div
+              key="body"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{
+                height: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+                opacity: { duration: 0.35, ease: 'easeOut' },
+              }}
+              style={{ overflow: 'hidden', willChange: 'height' }}
+            >
+              <div className="pt-5 flex flex-col">
+                {/* Description */}
+                <p className="text-slate-200 text-sm leading-relaxed mb-5">{plan.desc}</p>
 
                 {/* Features */}
-                <ul className="flex flex-col gap-0 mb-9 flex-1">
-                  {plan.features.map((f) => (
-                    <li key={f} className="flex items-center gap-3 py-2.5 border-b border-white/[0.06] text-sm text-slate-200">
-                      <span
-                        className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
-                        style={{ background: `${plan.accent}20`, border: `1px solid ${plan.accent}40` }}
-                      >
-                        <Check size={10} style={{ color: plan.accent }} />
-                      </span>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
+                <div className="flex flex-col mb-4">
+                  {plan.features.map(Row)}
+                </div>
 
-                {/* Upsell chips — Base only */}
-                {'upsells' in plan && (
+                {/* Transparency fine print */}
+                {plan.fine && (
+                  <p className="text-slate-400 text-[11px] leading-relaxed mb-5">{plan.fine}</p>
+                )}
+
+                {/* Upsell chips */}
+                {plan.upsells && (
                   <div className="flex flex-col gap-2 mb-5">
-                    {(plan as typeof plan & { upsells: string[] }).upsells.map((u) => (
+                    {plan.upsells.map((u) => (
                       <div
                         key={u}
                         className="flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs tracking-wide"
-                        style={{ background: 'rgba(14,165,233,0.06)', border: '1px solid rgba(14,165,233,0.12)', color: 'rgba(14,165,233,0.7)' }}
+                        style={{ background: 'rgba(14,165,233,0.06)', border: '1px solid rgba(14,165,233,0.12)', color: 'rgba(14,165,233,0.85)' }}
                       >
                         {u}
                       </div>
@@ -277,8 +360,66 @@ export function PricingSection() {
                 >
                   Get Started <ArrowRight size={14} />
                 </a>
-              </TiltCard>
+              </div>
             </motion.div>
+          )}
+        </AnimatePresence>
+      </TiltCard>
+    </motion.div>
+  )
+}
+
+// ── Section ───────────────────────────────────────────────────────────────────
+export function PricingSection() {
+  return (
+    <section id="pricing" className="relative py-12 md:py-28 px-6 md:px-14 overflow-hidden" style={{ background: '#050d1a' }}>
+      {/* Top separator */}
+      <div className="absolute top-0 left-14 right-14 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(14,165,233,0.3), transparent)' }} />
+
+      {/* Faint amber glow — center */}
+      <div
+        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] opacity-[0.04]"
+        style={{ background: 'radial-gradient(ellipse, #f59e0b 0%, transparent 65%)' }}
+      />
+
+      <div className="max-w-5xl mx-auto">
+
+        {/* ── Header ─────────────────────────────────────────────────────── */}
+        <motion.div
+          initial={{ opacity: 0, transform: 'translateY(24px)' }}
+          whileInView={{ opacity: 1, transform: 'translateY(0px)' }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.7 }}
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-14"
+        >
+          <div>
+            <p className="text-[#0ea5e9] text-xs font-medium tracking-[0.3em] uppercase mb-4">Our Plans</p>
+            <h2
+              className="font-bold uppercase leading-none"
+              style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 'clamp(2.8rem, 6vw, 5.5rem)', color: 'white' }}
+            >
+              Full-Stack<br />
+              <span style={{ color: '#f59e0b' }}>Digital Solutions.</span>
+            </h2>
+          </div>
+          <p className="text-slate-200 text-xs tracking-widest uppercase md:text-right md:max-w-[180px] leading-relaxed">
+            Everything you need<br className="hidden md:block" /> under one roof
+          </p>
+        </motion.div>
+
+        {/* ── Group 1 — Own it forever ───────────────────────────────────── */}
+        <GroupLabel>Own It Forever · One-Time</GroupLabel>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start mb-14">
+          {ownPlans.map((plan, i) => (
+            <PlanCard key={plan.name} plan={plan} index={i} />
+          ))}
+        </div>
+
+        {/* ── Group 2 — Hosted & managed ─────────────────────────────────── */}
+        <GroupLabel>Hosted & Managed · Monthly</GroupLabel>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start mb-4">
+          {hostedPlans.map((plan, i) => (
+            <PlanCard key={plan.name} plan={plan} index={i} />
           ))}
         </div>
 
@@ -287,7 +428,7 @@ export function PricingSection() {
           initial={{ opacity: 0, transform: 'translateY(64px)' }}
           whileInView={{ opacity: 1, transform: 'translateY(0px)' }}
           viewport={{ once: false, margin: '0px 0px -180px 0px' }}
-          transition={{ duration: 0.65, delay: 0.54, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.65, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="block"
         >
           <TiltCard
@@ -319,7 +460,7 @@ export function PricingSection() {
                   <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '2.2rem', color: '#0ea5e9', fontWeight: 'bold' }}>$299</span>
                   <span className="text-slate-200 text-sm ml-1">/month</span>
                 </p>
-                <p className="text-slate-200 text-xs tracking-wide">Add to any plan · Cancel anytime</p>
+                <p className="text-slate-200 text-xs tracking-wide">For owned sites · Cancel anytime</p>
               </div>
 
               {/* Divider */}
