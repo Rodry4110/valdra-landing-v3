@@ -264,7 +264,8 @@ export function ContactSection() {
                       }}
                     >
                       <option value=""           className="bg-[#050d1a]">Select a service…</option>
-                      <option value="web-design"         className="bg-[#050d1a]">Web Design</option>
+                      <option value="web-design"         className="bg-[#050d1a]">Web Design (One-Time)</option>
+                      <option value="hosted-website"     className="bg-[#050d1a]">Hosted Website ($149/mo)</option>
                       <option value="digital-marketing"  className="bg-[#050d1a]">Digital Marketing</option>
                       <option value="both"               className="bg-[#050d1a]">Both — Website + Marketing</option>
                       <option value="not-sure"           className="bg-[#050d1a]">Not Sure Yet — Let's Talk</option>

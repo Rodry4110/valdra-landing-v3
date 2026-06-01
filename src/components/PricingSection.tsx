@@ -8,6 +8,7 @@ type Plan = {
   desc: string
   price: string
   period: string
+  setup?: string             // small one-time setup fee line under the price
   accent: string
   featured: boolean
   ownership?: boolean        // shows the "you own it" lock badge
@@ -68,9 +69,10 @@ const hostedPlans: Plan[] = [
   {
     tier: 'Monthly',
     name: 'Hosted Website',
-    desc: "Get online for a low monthly cost — we build, host, and maintain everything. Perfect if you'd rather not pay a big lump sum upfront.",
+    desc: "Get online for a low one-time setup plus a small monthly — we build, host, and maintain everything. Perfect if you'd rather skip a big lump sum upfront.",
     price: '$149',
     period: '/month',
+    setup: '+ $199 one-time setup fee',
     accent: '#34d399',
     featured: false,
     note: 'We Host & Manage · Cancel Anytime',
@@ -82,7 +84,7 @@ const hostedPlans: Plan[] = [
       'Unlimited Content Updates',
       'Ongoing Support Included',
       'Basic SEO Setup',
-      'No Big Upfront Cost',
+      'Low Upfront Cost — Just $199 to Start',
     ],
   },
   {
@@ -266,12 +268,15 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
           </h3>
 
           {/* Price */}
-          <div className="mb-4">
+          <div className={plan.setup ? 'mb-1' : 'mb-4'}>
             <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '3rem', color: plan.accent, fontWeight: 'bold' }}>
               {plan.price}
             </span>
             <span className="text-slate-200 text-base ml-1">{plan.period}</span>
           </div>
+          {plan.setup && (
+            <p className="text-slate-300 text-xs font-semibold tracking-wide mb-4">{plan.setup}</p>
+          )}
 
           {/* Expand affordance */}
           <div
