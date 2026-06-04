@@ -33,9 +33,123 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&family=Bebas+Neue&display=swap" />
+
+    <!-- Structured data (JSON-LD) — helps Google & AI engines understand and cite Valdra Co. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "@id": "https://www.valdraco.com/#business",
+      "name": "Valdra Co.",
+      "alternateName": "Valdra",
+      "url": "https://www.valdraco.com/",
+      "image": "https://www.valdraco.com/og-image.png",
+      "logo": "https://www.valdraco.com/og-image.png",
+      "email": "studio@valdraco.com",
+      "description": "Valdra Co. is a boutique web design & digital marketing agency based in Asheville, NC. We build fast, conversion-focused websites and run digital marketing for local businesses — all under one roof.",
+      "slogan": "We Build Brands That Convert.",
+      "foundingDate": "2026",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Asheville",
+        "addressRegion": "NC",
+        "addressCountry": "US"
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Asheville" },
+        { "@type": "AdministrativeArea", "name": "Western North Carolina" }
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "18:00"
+        }
+      ],
+      "knowsAbout": ["Web Design", "Web Development", "Digital Marketing", "SEO", "Social Media Management", "Online Booking Setup", "Conversion Optimization"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Valdra Co. Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Website Design", "description": "Fast, conversion-focused custom websites you own." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Hosted Website Plans", "description": "We build, host, and maintain your website for a low monthly fee." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Digital Marketing & Social Media Management", "description": "Social media management, content, and marketing that drives leads." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Local SEO & Google Business Setup", "description": "Get found on Google Search and Maps." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Online Booking & Reminders Setup", "description": "Let customers book online with automatic reminders." } }
+        ]
+      }
+    }
+    </script>
+
+    <!-- FAQ structured data — lets Google & AI assistants pull direct answers -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I choose the right web design agency?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Look for an agency that focuses on results, not just looks — a site should turn visitors into customers. Check that you'll own your website, that pricing is upfront with no hidden fees, and that you get real human support. Valdra Co. builds conversion-focused sites, quotes transparently, and answers the phone the same day." }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does a website cost, and do I own it?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Valdra Co.'s one-time websites start at $799 for a Base site and $1,499 for a Premium build — and you own it forever. There is also a Hosted plan at $149/month plus a $199 setup, where Valdra builds, hosts, and maintains everything. Every price is listed clearly before you commit." }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to build my website?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Most agencies take 6 to 8 weeks. Valdra Co. delivers polished, conversion-ready websites in 5 to 14 days without cutting corners." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can a website actually help my local business get more customers?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. A fast, well-designed website builds trust, shows up on Google, and guides visitors toward booking or contacting you. The goal is more calls, bookings, and sales — every section is designed to convert visitors into paying customers." }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the benefits of digital marketing for a local business?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Digital marketing keeps you top-of-mind so customers call you first. Social media management, local SEO, and Google Ads bring in steady leads, build your reputation, and let you compete with bigger companies — all trackable with real monthly reports." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you help with SEO and getting found on Google?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every site includes SEO setup, and Valdra Co. offers Google Business Profile setup so you appear on Google Search and Maps. The Digital Marketing plan includes continuous SEO and local optimization to climb rankings over time." }
+        },
+        {
+          "@type": "Question",
+          "name": "What areas does Valdra Co. serve?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Valdra Co. is based in Asheville, NC and serves small businesses across Western North Carolina, and also works with clients remotely anywhere in the U.S." }
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- Crawler / no-JS fallback: ensures search engines & AI see core content even before React renders -->
+    <noscript>
+      <div style="max-width:680px;margin:40px auto;padding:0 20px;font-family:sans-serif;color:#0f172a;">
+        <h1>Valdra Co. — We Build Brands That Convert</h1>
+        <p>Valdra Co. is a boutique <strong>web design &amp; digital marketing agency</strong> based in Asheville, NC. We build fast, conversion-focused websites and run digital marketing for local businesses — all under one roof.</p>
+        <h2>What We Do</h2>
+        <ul>
+          <li><strong>Custom Website Design</strong> — modern, mobile-friendly sites you own, delivered in days.</li>
+          <li><strong>Hosted Website Plans</strong> — we build, host, and maintain everything for a low monthly fee.</li>
+          <li><strong>Digital Marketing &amp; Social Media Management</strong> — content and campaigns that bring in leads.</li>
+          <li><strong>Local SEO &amp; Google Business Setup</strong> — get found on Google Search and Maps.</li>
+          <li><strong>Online Booking &amp; Reminders</strong> — let customers book online with automatic reminders.</li>
+        </ul>
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:studio@valdraco.com">studio@valdraco.com</a><br />
+        Hours: Monday–Friday, 9am–6pm EST · Based in Asheville, NC</p>
+      </div>
+    </noscript>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

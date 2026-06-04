@@ -7,6 +7,7 @@ import { PricingSection } from './components/PricingSection'
 import { TestimonialsSection } from './components/TestimonialsSection'
 import { WhyUsSection } from './components/WhyUsSection'
 import { WorkSection } from './components/WorkSection'
+import { FAQSection } from './components/FAQSection'
 import { ContactSection } from './components/ContactSection'
 import { ScrollProgress } from './components/ScrollProgress'
 import { CustomCursor } from './components/CustomCursor'
@@ -27,6 +28,7 @@ function App() {
         <PricingSection />
         <TestimonialsSection />
         <WhyUsSection />
+        <FAQSection />
         <ContactSection />
         </main>
       </>

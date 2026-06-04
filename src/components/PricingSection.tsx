@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, Check, ChevronDown, Lock, Server } from 'lucide-react'
+import { ArrowRight, Check, ChevronDown, Lock, Server, MapPin, Boxes, CalendarCheck } from 'lucide-react'
 
 type Plan = {
   tier: string
@@ -30,7 +30,6 @@ const ownPlans: Plan[] = [
     accent: '#0ea5e9',
     featured: false,
     ownership: true,
-    upsells: ['+ Google Business Setup · $149', '+ 3D Animations · $249'],
     features: [
       'Custom-Built for Your Brand',
       '5-Page Custom Design',
@@ -51,7 +50,6 @@ const ownPlans: Plan[] = [
     accent: '#f59e0b',
     featured: true,
     ownership: true,
-    upsells: ['+ Google Business Setup · $149'],
     features: [
       'Everything in Base',
       'Fully Tailored to Your Industry',
@@ -116,6 +114,41 @@ const addonFeatures = [
   '24/7 Uptime Monitoring',
   'Emergency Fix Guarantee',
   'Dedicated Support Line',
+]
+
+// ── One-time à la carte add-ons (enhance any site) ─────────────────────────────
+type Addon = {
+  name: string
+  price: string
+  desc: string
+  note?: string
+  accent: string
+  Icon: React.ComponentType<{ size?: number; style?: React.CSSProperties }>
+}
+
+const oneTimeAddons: Addon[] = [
+  {
+    name: 'Google Business Setup',
+    price: '$149',
+    desc: 'Get found on Google Maps & Search — full profile setup, categories, photos, and local optimization.',
+    accent: '#0ea5e9',
+    Icon: MapPin,
+  },
+  {
+    name: '3D Animations & Effects',
+    price: '$249',
+    desc: 'Cinematic 3D and scroll-driven motion that makes your site stand out from the crowd.',
+    note: 'For Base sites · already included in Premium',
+    accent: '#f59e0b',
+    Icon: Boxes,
+  },
+  {
+    name: 'Online Booking & Reminders',
+    price: '$249',
+    desc: 'Customers book right from your site. You get a text on every booking; clients get auto-reminders that cut no-shows.',
+    accent: '#34d399',
+    Icon: CalendarCheck,
+  },
 ]
 
 // ── Tilt card ─────────────────────────────────────────────────────────────────
@@ -428,7 +461,63 @@ export function PricingSection() {
           ))}
         </div>
 
-        {/* ── Add-on card — full-width horizontal ───────────────────────── */}
+        {/* ── Group 3 — One-time add-ons ─────────────────────────────────── */}
+        <GroupLabel>Add-Ons · Enhance Any Site</GroupLabel>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-stretch mb-14">
+          {oneTimeAddons.map((a, i) => (
+            <motion.div
+              key={a.name}
+              initial={{ opacity: 0, transform: 'translateY(48px)' }}
+              whileInView={{ opacity: 1, transform: 'translateY(0px)' }}
+              viewport={{ once: false, margin: '0px 0px -80px 0px' }}
+              transition={{ duration: 0.55, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="h-full"
+            >
+              <TiltCard
+                accentColor={a.accent}
+                className="h-full"
+                style={{
+                  background: 'rgba(255,255,255,0.025)',
+                  border: '1px solid rgba(255,255,255,0.07)',
+                  borderRadius: '4px 20px 4px 20px',
+                  padding: '28px 24px',
+                }}
+              >
+                <div className="flex flex-col h-full">
+                  <span
+                    className="w-11 h-11 rounded-xl flex items-center justify-center mb-4"
+                    style={{ background: `${a.accent}18`, border: `1px solid ${a.accent}35` }}
+                  >
+                    <a.Icon size={20} style={{ color: a.accent }} />
+                  </span>
+                  <h3
+                    className="text-white font-bold mb-1"
+                    style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '1.35rem', letterSpacing: '0.04em' }}
+                  >
+                    {a.name}
+                  </h3>
+                  <p className="mb-3">
+                    <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '1.9rem', color: a.accent, fontWeight: 'bold' }}>
+                      {a.price}
+                    </span>
+                    <span className="text-slate-300 text-sm ml-1">one-time</span>
+                  </p>
+                  <p className="text-slate-300 text-sm leading-relaxed mb-3 flex-1">{a.desc}</p>
+                  {a.note && <p className="text-slate-400 text-[11px] tracking-wide mb-4">{a.note}</p>}
+                  <a
+                    href="#contact"
+                    className="mt-auto inline-flex items-center justify-center gap-2 w-full py-2.5 rounded-full text-xs font-semibold tracking-widest uppercase transition hover:brightness-150"
+                    style={{ background: `${a.accent}12`, border: `1px solid ${a.accent}30`, color: a.accent }}
+                  >
+                    Add to Plan <ArrowRight size={13} />
+                  </a>
+                </div>
+              </TiltCard>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* ── Add-on card — full-width horizontal (ongoing care) ─────────── */}
         <motion.div
           initial={{ opacity: 0, transform: 'translateY(64px)' }}
           whileInView={{ opacity: 1, transform: 'translateY(0px)' }}
