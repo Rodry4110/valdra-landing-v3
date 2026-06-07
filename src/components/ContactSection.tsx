@@ -332,13 +332,43 @@ export function ContactSection() {
           </motion.div>
         </div>
 
+        {/* Areas We Serve — local SEO + trust signal */}
+        <motion.div
+          initial={{ opacity: 0, transform: 'translateY(16px)' }}
+          whileInView={{ opacity: 1, transform: 'translateY(0px)' }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="mt-24 pt-10 border-t border-white/[0.05] text-center"
+        >
+          <p className="text-[#0ea5e9] text-xs font-medium tracking-[0.3em] uppercase mb-5">
+            Proudly Serving Western North Carolina
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 max-w-2xl mx-auto">
+            {[
+              'Asheville', 'Weaverville', 'Mars Hill', 'Black Mountain', 'Hendersonville',
+              'Fletcher', 'Arden', 'Candler', 'Marshall', 'Waynesville',
+            ].map((town) => (
+              <span
+                key={town}
+                className="text-slate-300 text-xs tracking-wide px-3 py-1.5 rounded-full"
+                style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}
+              >
+                {town}
+              </span>
+            ))}
+          </div>
+          <p className="text-slate-400 text-xs mt-5 max-w-xl mx-auto leading-relaxed">
+            Web design &amp; digital marketing for small businesses across Asheville and Western NC — and remote clients anywhere in the U.S.
+          </p>
+        </motion.div>
+
         {/* Footer */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: false }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="mt-24 pt-8 border-t border-white/[0.05] flex flex-col md:flex-row items-center justify-between gap-4"
+          className="mt-16 pt-8 border-t border-white/[0.05] flex flex-col md:flex-row items-center justify-between gap-4"
         >
           <span
             className="text-white/50 font-bold tracking-[0.25em] text-sm uppercase"
