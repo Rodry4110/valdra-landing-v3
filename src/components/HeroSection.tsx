@@ -345,8 +345,9 @@ export function HeroSection() {
               className="font-light leading-relaxed mb-10"
               style={{ fontSize: 'clamp(0.95rem, 1.9vw, 1.05rem)', maxWidth: '460px', color: 'rgba(226,232,240,0.96)' }}
             >
-              Strategy, design, and code built for businesses that refuse to settle
-              for average. One boutique team. One goal: your growth.
+              We build custom websites that don't just look great — they bring in
+              customers. Strategy, design, and code from one boutique team — built
+              for your growth.
             </motion.p>
 
             {/* CTAs */}
