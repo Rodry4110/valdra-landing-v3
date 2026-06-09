@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, Mail, MapPin, Clock, CalendarDays, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
+import { ArrowRight, Mail, Phone, MapPin, Clock, CalendarDays, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
 import emailjs from '@emailjs/browser'
 
 type SubmitState = 'idle' | 'loading' | 'success' | 'error'
@@ -82,11 +82,12 @@ export function ContactSection() {
               {/* Contact info */}
               <div className="flex flex-col gap-5">
                 {[
-                  { icon: Mail,         label: 'Email Us',       value: 'studio@valdraco.com',           accent: '#0ea5e9' },
-                  { icon: MapPin,       label: 'Based In',        value: 'Western NC — Remote Friendly',  accent: '#f59e0b' },
-                  { icon: CalendarDays, label: 'Hours',           value: 'Mon–Fri · 9am–6pm EST',         accent: '#a78bfa' },
-                  { icon: Clock,        label: 'Response Time',   value: 'Within 24 hours, always',       accent: '#34d399' },
-                ].map(({ icon: Icon, label, value, accent }) => (
+                  { icon: Mail,         label: 'Email Us',       value: 'studio@valdraco.com',           href: 'mailto:studio@valdraco.com', accent: '#0ea5e9' },
+                  { icon: Phone,        label: 'Call or Text',    value: '(828) 380-5840',                href: 'tel:+18283805840',           accent: '#34d399' },
+                  { icon: MapPin,       label: 'Based In',        value: 'Western NC — Remote Friendly',  href: undefined,                    accent: '#f59e0b' },
+                  { icon: CalendarDays, label: 'Hours',           value: 'Mon–Fri · 9am–6pm EST',         href: undefined,                    accent: '#a78bfa' },
+                  { icon: Clock,        label: 'Response Time',   value: 'Within 24 hours, always',       href: undefined,                    accent: '#22d3ee' },
+                ].map(({ icon: Icon, label, value, accent, href }) => (
                   <div key={label} className="flex items-center gap-4">
                     <div
                       className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
@@ -96,7 +97,11 @@ export function ContactSection() {
                     </div>
                     <div>
                       <div className="text-slate-200 text-xs tracking-widest uppercase">{label}</div>
-                      <div className="text-white text-sm font-medium mt-0.5">{value}</div>
+                      {href ? (
+                        <a href={href} className="text-white text-sm font-medium mt-0.5 block hover:text-[#0ea5e9] transition-colors">{value}</a>
+                      ) : (
+                        <div className="text-white text-sm font-medium mt-0.5">{value}</div>
+                      )}
                     </div>
                   </div>
                 ))}
